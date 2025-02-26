@@ -1,0 +1,12 @@
+interface apb_if;
+  logic Transfer;
+  logic RESETn;
+  logic [7:0]PADDR;
+  logic PSEL1;
+  logic PENABLE;
+  logic PWRITE;
+  logic PREADY; 
+  logic PSLVERR;
+  logic [7:0]PRDATA;
+  logic [7:0]PWDATA;
+endinterface;
