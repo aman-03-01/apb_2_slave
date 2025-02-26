@@ -1,0 +1,26 @@
+// UVM TESTBENCH APB_PROTOCOL 
+// Header file: apb_top.svh
+//Description: This file contains all the files dependant files in TB 
+
+`include "uvm_macros.svh"
+import uvm_pkg::*;
+
+//RTL
+//`include "../rtl/apb_DUT.sv"
+//`include "../rtl/apb_DUT_IF.sv"
+
+//TestBench
+`include "../IF/apb_interface.sv"
+`include "../sequences/apb_write_seq_item.sv"
+`include "../agent/apb_a1_sequencer.sv"
+`include "../agent/apb_a1_driver.sv"
+`include "../agent/apb_a1_monitor.sv"
+`include "../agent/apb_active_agent_a1.sv"
+`include "../agent/apb_a2_monitor.sv"
+`include "../agent/apb_passive_agent_a2.sv"
+`include "../env/apb_env.sv"
+`include "../env/apb_scoreboard.sv"
+`include "../env/apb_coverage.sv"
+`include "../tests/apb_write_test.sv"
+`include "../TB_TOP/apb_tb_top.sv"
+//`include "../TB_TOP/apb_top.svh"
