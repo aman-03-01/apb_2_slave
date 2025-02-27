@@ -4,7 +4,7 @@ interface apb_if(input logic PCLK,PRESETn);
   logic [8:0] apb_write_paddr;
   logic [7:0] apb_write_data;
   logic [8:0] apb_read_paddr;
-  logic PLSVERR;
+  logic PSLVERR;
   logic [7:0] apb_read_data_out;
 
 //Clocking blocks for driver

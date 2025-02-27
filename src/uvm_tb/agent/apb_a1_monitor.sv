@@ -30,7 +30,7 @@ endtask
 //Need to chenge wrt Monitor type : ACTIVE 
 task monitor_logic();
 //@(posedge v_apb_intf_h.MONITOR.pclk;
-   @(posedge v_apb_intf.pclk)
+   @(posedge v_apb_intf.PCLK)
    //Check with Harsha
    //if(v_apb_intf.psel==1 && v_apb_intf.penable==1)
    begin
