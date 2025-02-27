@@ -14,19 +14,19 @@ APB_Protocol APB_DUT(
 );
 
 initial begin 
-    PCLK   =1'b0; 
-    PRESETn=1'b0; 
-    transfer=1'b0;
+    APB_IF.PCLK   =1'b0; 
+    APB_IF.PRESETn=1'b0; 
+    APB_IF.transfer=1'b0;
 #5 
 
-    PRESETn=1'b1; 
-    transfer=1'b1;
+    APB_IF.PRESETn=1'b1; 
+    APB_IF.transfer=1'b1;
 #5 
 end
 
 
 always begin
-    #5   PCLK = ~PCLK;
+    #5   APB_IF.PCLK = ~APB_IF.PCLK;
 end
 
 
@@ -35,7 +35,7 @@ intial begin
 end
 
 // Set Config DB
-intial begin
+initial begin
     `uvm_config_db #( virtual APB_DUT_IF)::set(null,"*","vif",APB_DUT_IF);
 end
 

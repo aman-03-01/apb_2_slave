@@ -5,11 +5,9 @@ class apb_write_seq_item extends uvm_sequence_item;
   rand bit transfer;
   rand bit READ_WRITE;
   bit [7:0] apb_read_data_out;
-  bit PREADY;
   bit PSLVERR;
   
   `uvm_object_utils_begin(apb_write_seq_item)
-  `uvm_field_int(PREADY,UVM_ALL_ON)
   `uvm_field_int(PSLVERR,UVM_ALL_ON)
   `uvm_field_int(apb_read_data_out,UVM_ALL_ON)
   `uvm_field_int(transfer,UVM_ALL_ON);
