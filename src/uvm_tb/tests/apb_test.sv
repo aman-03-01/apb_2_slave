@@ -1,33 +1,30 @@
 class apb_test extends uvm_test;
-
   //Register with factory
-  `uvm_component_utils(apb_test);
+`uvm_component_utils(apb_test);
   
-  apb_env  env;
-  virtual dut_if vif;
+  apb_env  apb_env_h;
+  apb_a1_sequence apb_a1_seq;
   
-  function new(string name = "apb_base_test", uvm_component parent = null);
+  function new(input string name = "apb_test", uvm_component parent = null);
     super.new(name, parent);
   endfunction
 
   //Phases
   virtual function void build_phase(uvm_phase phase);
-    env = apb_env::type_id::create("env", this);
-    //
-    if (!uvm_config_db#(virtual dut_if)::get(this, "", "vif", vif)) begin
-      `uvm_fatal("build_phase", "No virtual interface specified for this test instance")
-    end 
-    uvm_config_db#(virtual dut_if)::set( this, "env", "vif", vif);
+    apb_env_h = apb_env::type_id::create("apb_env_h", this);
+    apb_a1_seq = apb_a1_sequence::type_id::create("apb_a1_seq");
   endfunction
 
-  task run_phase( uvm_phase phase );
-    apb_sequence apb_seq;
-    apb_seq = apb_sequence::type_id::create("apb_seq");
-    phase.raise_objection( this, "Starting apb_base_seqin main phase" );
-    $display("%t Starting sequence apb_seq run_phase",$time);
-    apb_seq.start(env.agt.sqr);
+  virtual function void end_of_elaboration_phase(uvm_phase phase);
+    uvm_top.print_topology();
+  endfunction
+  
+  virtual task run_phase( uvm_phase phase );
+    phase.raise_objection( this, "Starting apb_write_seq in main phase" );
+    $display("%t Starting sequence apb_a1_seq run_phase",$time);
+    apb_a1_seq.start(apb_env_h.a1.apb_seqr_h);
     #100ns;
-    phase.drop_objection( this , "Finished apb_seq in main phase" );
+    phase.drop_objection( this , "Finished apb_a1_seq in main phase" );
   endtask
   
   

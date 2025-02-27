@@ -1,6 +1,25 @@
 module APB_TB_TOP;
 
-apb_if APB_DUT_IF;
+apb_if APB_DUT_IF(PCLK,PRESETn);
+initial begin 
+    APB_IF.PCLK   =1'b0; 
+    APB_IF.PRESETn=1'b0; 
+    APB_IF.transfer=1'b0;
+#5; 
+
+    APB_IF.PRESETn=1'b1; 
+    APB_IF.transfer=1'b1;
+#5;
+end
+
+always begin
+    #5   APB_IF.PCLK = ~APB_IF.PCLK;
+end
+
+initial begin
+    run_test("apb_test");
+end
+
 APB_Protocol APB_DUT(
 .PCLK               (APB_DUT_IF.PCLK),
 .PRESETn            (APB_DUT_IF.PRESETn),
@@ -13,33 +32,13 @@ APB_Protocol APB_DUT(
 .apb_read_data_out  (APB_DUT_IF.apb_read_data_out)
 );
 
-initial begin 
-    APB_IF.PCLK   =1'b0; 
-    APB_IF.PRESETn=1'b0; 
-    APB_IF.transfer=1'b0;
-#5 
-
-    APB_IF.PRESETn=1'b1; 
-    APB_IF.transfer=1'b1;
-#5 
-end
-
-
-always begin
-    #5   APB_IF.PCLK = ~APB_IF.PCLK;
-end
-
-
-intial begin
-    run_test("apb_test");
-end
 
 // Set Config DB
 initial begin
-    `uvm_config_db #( virtual APB_DUT_IF)::set(null,"*","vif",APB_DUT_IF);
+    uvm_config_db #( virtual APB_DUT_IF)::set(uvm_root::get(),"*","vif",APB_DUT_IF);
 end
 
-intial begin
+initial begin
     #1000 $finish;
 end
 
