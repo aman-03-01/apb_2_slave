@@ -3,10 +3,10 @@
 // Description: This file contains all the files dependant files in TB 
 
 //RTL
-//`include "../rtl/slave1.v"
-//`include "../rtl/slave2.v"
-//`include "../rtl/master.v"
-//`include "../rtl/apbtop.v"
+`include "../../rtl/slave1.v"
+`include "../../rtl/slave2.v"
+`include "../../rtl/master.v"
+`include "../../rtl/apbtop.v"
 
 //UVM Lib
 `include "uvm_macros.svh"
