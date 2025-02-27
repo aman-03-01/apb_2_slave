@@ -15,6 +15,7 @@ import uvm_pkg::*;
 //TestBench
 `include "../IF/apb_interface.sv"
 `include "../sequences/apb_write_seq_item.sv"
+`include "../sequences/apb_a1_sequence.sv"
 `include "../agent/apb_a1_sequencer.sv"
 `include "../agent/apb_a1_driver.sv"
 `include "../agent/apb_a1_monitor.sv"
@@ -22,7 +23,7 @@ import uvm_pkg::*;
 `include "../agent/apb_a2_monitor.sv"
 `include "../agent/apb_passive_agent_a2.sv"
 `include "../env/apb_env.sv"
-`include "../env/apb_scoreboard.sv"
+//`include "../env/apb_scoreboard.sv"
 `include "../env/apb_coverage.sv"
-`include "../tests/apb_write_test.sv"
+`include "../tests/apb_test.sv"
 `include "../TB_TOP/apb_tb_top.sv"

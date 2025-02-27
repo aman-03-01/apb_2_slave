@@ -1,12 +1,11 @@
 interface apb_if;
-  logic Transfer;
   logic RESETn;
-  logic [7:0]PADDR;
-  logic PSEL1;
-  logic PENABLE;
-  logic PWRITE;
-  logic PREADY; 
-  logic PSLVERR;
-  logic [7:0]PRDATA;
-  logic [7:0]PWDATA;
+  logic transfer;
+  logic READ_WRITE;
+  logic [8:0] apb_write_paddr;
+  logic [7:0] apb_write_data;
+  logic [8:0]apb_read_paddr;
+  logic PLSVERR;
+  logic [7:0]apb_read_data_out;
 endinterface;
+
