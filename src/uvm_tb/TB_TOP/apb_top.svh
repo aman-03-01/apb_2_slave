@@ -22,5 +22,4 @@ import uvm_pkg::*;
 `include "../env/apb_scoreboard.sv"
 `include "../env/apb_coverage.sv"
 `include "../tests/apb_write_test.sv"
-`include "../TB_TOP/apb_tb_top.sv"
-//`include "../TB_TOP/apb_top.svh"
+//`include "../TB_TOP/apb_tb_top.sv"
