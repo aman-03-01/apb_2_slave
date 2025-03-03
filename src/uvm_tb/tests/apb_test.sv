@@ -23,7 +23,7 @@ class apb_test extends uvm_test;
     phase.raise_objection( this, "Starting apb_write_seq in main phase" );
     $display("%t Starting sequence apb_a1_seq run_phase",$time);
     apb_a1_seq.start(apb_env_h.a1.apb_seqr_h);
-    #100ns;
+    #1000ns;
     phase.drop_objection( this , "Finished apb_a1_seq in main phase" );
   endtask
   

@@ -21,6 +21,9 @@ class apb_write_seq_item extends uvm_sequence_item;
   function new(string name="apb_write_seq_item");
     super.new(name);
   endfunction
-  
-  
+
+ constraint write_read {READ_WRITE dist {1:=5};}
+ constraint write_addr {apb_write_paddr inside {2,3,4,5,6};}
+ constraint write_data {apb_write_data inside {20};}
+ constraint read_addr {apb_read_paddr inside {2};}
 endclass

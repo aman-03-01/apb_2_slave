@@ -20,7 +20,7 @@ task run_phase(uvm_phase phase);
  forever begin 
   apb_tx_h=apb_write_seq_item::type_id::create("apb_tx_h");
   monitor_logic();
-  mon_port.write(apb_tx_h);
+  apb_a2_mon_port.write(apb_tx_h);
  end
 endtask 
 
@@ -28,23 +28,23 @@ endtask
 //Need to chenge wrt Monitor type : PASSIVE 
 task monitor_logic();
 //@(posedge v_apb_intf_h.MONITOR.pclk;
-   @(posedge v_apb_intf.pclk)
+   @(posedge v_apb_intf.PCLK);
    //Check with Harsha
    //if(v_apb_intf.psel==1 && v_apb_intf.penable==1)
    begin
-      if(v_apb_intf.pwrite==1)
+      if(v_apb_intf.READ_WRITE==1)
       begin
          apb_tx_h.apb_read_paddr       =v_apb_intf.apb_read_paddr;
          apb_tx_h.apb_read_data_out   =v_apb_intf.apb_read_data_out;
          apb_tx_h.PSLVERR   =v_apb_intf.PSLVERR;
-         ap.write(apb_tx_h);
+         apb_a2_mon_port.write(apb_tx_h);
       end
       else
       begin
          apb_tx_h.apb_read_paddr       =v_apb_intf.apb_read_paddr;
          apb_tx_h.apb_read_data_out    =v_apb_intf.apb_read_data_out;
          apb_tx_h.PSLVERR              =v_apb_intf.PSLVERR;
-         ap.write(apb_tx_h);
+         apb_a2_mon_port.write(apb_tx_h);
       end
    end
 endtask 
