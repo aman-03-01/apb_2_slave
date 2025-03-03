@@ -30,7 +30,7 @@ task run_phase(uvm_phase phase);
          apb_tx_h.apb_write_data      =v_apb_intf.apb_write_data;
          //apb_tx_h.PSLVERR   =v_apb_intf.PSLVERR;
          apb_a1_mon_port.write(apb_tx_h);
-         $display("monitor is %d",apb_tx_h.transfer,apb_tx_h.READ_WRITE,apb_tx_h.apb_write_paddr,apb_tx_h.apb_write_data);
+        // $display("monitor is %d",apb_tx_h.transfer,apb_tx_h.READ_WRITE,apb_tx_h.apb_write_paddr,apb_tx_h.apb_write_data);
       end
       else if(v_apb_intf.READ_WRITE==0)
       begin
