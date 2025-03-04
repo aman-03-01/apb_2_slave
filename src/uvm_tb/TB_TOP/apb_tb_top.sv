@@ -2,26 +2,29 @@ module APB_TB_TOP();
 
 bit PCLK,PRESETn,transfer;
 
+//IF
 apb_if APB_DUT_IF(PCLK,PRESETn);
+
 initial begin 
-    PCLK   =1'b0; 
-    PRESETn=1'b0; 
+    PCLK    =1'b0; 
+    PRESETn =1'b0; 
     transfer=1'b0;
 #5; 
 
     PRESETn=1'b1; 
     transfer=1'b1;
-//#5;
 end
 
 always begin
-    #10   PCLK = ~PCLK;
+    #5   PCLK = ~PCLK;
 end
 
 initial begin
-    run_test("apb_test");
-    //run_test("apb_continues_write_test");
+    //run_test("apb_test");
+    //run_test("apb_reset_init_test");
+    run_test("apb_incr_addr_wr_test");
 end
+//DUT
 
 APB_Protocol APB_DUT(
 .PCLK               (APB_DUT_IF.PCLK),
@@ -38,8 +41,7 @@ APB_Protocol APB_DUT(
 
 // Set Config DB
 initial begin
-    //uvm_config_db #( virtual APB_DUT_IF)::set(uvm_root::get(),"*","vif",APB_DUT_IF);
-    uvm_config_db #(virtual apb_if)::set(null,"*","vif",APB_DUT_IF);
+    uvm_config_db #( virtual apb_if)::set(uvm_root::get(),"*","vif",APB_DUT_IF);
 end
 
 initial begin
