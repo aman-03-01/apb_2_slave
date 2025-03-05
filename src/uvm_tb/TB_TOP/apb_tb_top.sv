@@ -20,9 +20,9 @@ always begin
 end
 
 initial begin
-    //run_test("apb_test");
+    run_test("apb_test");
     //run_test("apb_reset_init_test");
-    run_test("apb_incr_addr_wr_test");
+    //run_test("apb_incr_addr_wr_test");
 end
 //DUT
 
