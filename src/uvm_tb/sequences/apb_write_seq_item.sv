@@ -24,7 +24,7 @@ class apb_write_seq_item extends uvm_sequence_item;
   endfunction
 
  constraint Rd_Wr {READ_WRITE dist {1:=5};}
- constraint write_addr {apb_write_paddr inside {[0:0]};}
- constraint read_addr {apb_read_paddr inside {[0:0]};}
+ constraint write_addr {apb_write_paddr inside {[0:511]};}
+ constraint read_addr {apb_read_paddr inside {[0:511]};}
  constraint write_data {apb_write_data == 8'b10011001;}
 endclass

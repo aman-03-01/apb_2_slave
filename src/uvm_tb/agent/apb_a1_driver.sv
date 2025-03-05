@@ -19,16 +19,18 @@ forever begin
       drive(apb_tx_h);
       apb_tx_h.print();
       seq_item_port.item_done(apb_tx_h);
+      `uvm_info("APB_DRV_A1","ITEM DONE",UVM_NONE)
       #5;
 end
+      `uvm_info("APB_DRV_A1","ITEM DONE After END",UVM_NONE)
 endtask
 
 virtual task drive(apb_write_seq_item apb_tx_h);
-   if(apb_tx_h.PRESETn == 1'b0)
+ if(apb_tx_h.PRESETn  == 1'b1) begin
   // begin
   //  apb_reset_init(apb_tx_h);
   // end
-   if(apb_tx_h.READ_WRITE ==1'b1)
+   if(apb_tx_h.READ_WRITE ==1'b0)
    begin
       write_task(apb_tx_h);
    end
@@ -36,6 +38,7 @@ virtual task drive(apb_write_seq_item apb_tx_h);
    begin
       read_task(apb_tx_h);
    end
+ end
  endtask
 
 task write_task(apb_write_seq_item apb_tx_h);
@@ -55,7 +58,7 @@ task read_task(apb_write_seq_item apb_tx_h);
   begin
      v_apb_intf.READ_WRITE     <=apb_tx_h.READ_WRITE;
      v_apb_intf.apb_read_paddr <=apb_tx_h.apb_read_paddr;
-     v_apb_intf.transfer  <=apb_tx_h.transfer;
+     v_apb_intf.transfer       <=apb_tx_h.transfer;
   end
 endtask
 /*

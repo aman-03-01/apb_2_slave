@@ -22,7 +22,7 @@ endfunction
 task run_phase(uvm_phase phase);
  forever begin 
    @(posedge v_apb_intf.PCLK)
-      if(v_apb_intf.READ_WRITE==1)
+      if(v_apb_intf.READ_WRITE==0)
       begin
          apb_tx_h.transfer            =v_apb_intf.transfer;
          apb_tx_h.READ_WRITE          =v_apb_intf.READ_WRITE;
@@ -32,7 +32,7 @@ task run_phase(uvm_phase phase);
          apb_a1_mon_port.write(apb_tx_h);
         // $display("monitor is %d",apb_tx_h.transfer,apb_tx_h.READ_WRITE,apb_tx_h.apb_write_paddr,apb_tx_h.apb_write_data);
       end
-      else if(v_apb_intf.READ_WRITE==0)
+      else if(v_apb_intf.READ_WRITE==1)
       begin
          apb_tx_h.transfer             =v_apb_intf.transfer;
          apb_tx_h.READ_WRITE           =v_apb_intf.READ_WRITE;
