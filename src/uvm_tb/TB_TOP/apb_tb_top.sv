@@ -16,13 +16,16 @@ initial begin
 end
 
 always begin
-    #5   PCLK = ~PCLK;
+    #10   PCLK = ~PCLK;
 end
 
 initial begin
-    run_test("apb_test");
+    //run_test("apb_test");
     //run_test("apb_reset_init_test");
     //run_test("apb_incr_addr_wr_test");
+    //run_test("apb_random_write_read_test");
+   run_test("apb_targeted_addr_write_read_test");
+   //run_test("apb_targeted_addr_write_read_test_slave_2");
 end
 //DUT
 
@@ -41,7 +44,8 @@ APB_Protocol APB_DUT(
 
 // Set Config DB
 initial begin
-    uvm_config_db #( virtual apb_if)::set(uvm_root::get(),"*","vif",APB_DUT_IF);
+    //uvm_config_db #( virtual apb_if)::set(uvm_root::get(),"*","vif",APB_DUT_IF);
+    uvm_config_db #(virtual apb_if)::set(null,"*","vif",APB_DUT_IF);
 end
 
 initial begin

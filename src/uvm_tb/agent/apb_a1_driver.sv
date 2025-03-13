@@ -19,18 +19,11 @@ forever begin
       drive(apb_tx_h);
       apb_tx_h.print();
       seq_item_port.item_done(apb_tx_h);
-      `uvm_info("APB_DRV_A1","ITEM DONE",UVM_NONE)
-      #5;
 end
-      `uvm_info("APB_DRV_A1","ITEM DONE After END",UVM_NONE)
 endtask
 
 virtual task drive(apb_write_seq_item apb_tx_h);
- if(apb_tx_h.PRESETn  == 1'b1) begin
-  // begin
-  //  apb_reset_init(apb_tx_h);
-  // end
-   if(apb_tx_h.READ_WRITE ==1'b0)
+   if(apb_tx_h.READ_WRITE =='b0 )
    begin
       write_task(apb_tx_h);
    end
@@ -38,17 +31,16 @@ virtual task drive(apb_write_seq_item apb_tx_h);
    begin
       read_task(apb_tx_h);
    end
- end
  endtask
 
 task write_task(apb_write_seq_item apb_tx_h);
   @(posedge v_apb_intf.PCLK);
   begin
-//Cross Check with Harsha      
+     v_apb_intf.transfer  <=apb_tx_h.transfer;
      v_apb_intf.READ_WRITE      <=apb_tx_h.READ_WRITE;
      v_apb_intf.apb_write_paddr <=apb_tx_h.apb_write_paddr;
      v_apb_intf.apb_write_data  <=apb_tx_h.apb_write_data;
-     v_apb_intf.transfer        <=apb_tx_h.transfer;
+     v_apb_intf.PSLVERR  <=apb_tx_h.PSLVERR;
   end
 endtask
 
@@ -56,21 +48,11 @@ endtask
 task read_task(apb_write_seq_item apb_tx_h);
   @(posedge v_apb_intf.PCLK);
   begin
-     v_apb_intf.READ_WRITE     <=apb_tx_h.READ_WRITE;
+     v_apb_intf.transfer  <=apb_tx_h.transfer;
+     v_apb_intf.READ_WRITE      <=apb_tx_h.READ_WRITE;
      v_apb_intf.apb_read_paddr <=apb_tx_h.apb_read_paddr;
-     v_apb_intf.transfer       <=apb_tx_h.transfer;
+     v_apb_intf.PSLVERR  <=apb_tx_h.PSLVERR;
   end
 endtask
-/*
-task apb_reset_init(apb_write_seq_item apb_tx_h);
-    `uvm_info("APB_DRV","Asserting Reset for #23 delay","UVM_MEDIUM")
-     v_apb_intf.PRESETn <= 1'b0;
-     #5;
-     repeat(23) @(posedge v_apb_intf.PCLK);
-    `uvm_info("APB_DRV","De-asserting Reset after #23 delay","UVM_MEDIUM")
-     v_apb_intf.PRESETn <= 1'b1;
-     repeat(3) @(posedge v_apb_intf.PCLK);
-    `uvm_info("APB_DRV","RESET INIT COMPLETE","UVM_MEDIUM")
-endtask
-*/
+
 endclass

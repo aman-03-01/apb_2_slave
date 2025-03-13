@@ -45,7 +45,7 @@
 		     IDLE: begin 
 		              PENABLE =0;
 
-		            if(transfer)   
+		            if(!transfer)   
 	        	      next_state = IDLE ;
 	                    else
 			      next_state = SETUP;
@@ -63,7 +63,7 @@
                                   PADDR = apb_write_paddr;
 				  PWDATA = apb_write_data;  end
 			    
-			    if(transfer && PSLVERR)
+			    if(transfer && ~PSLVERR)
 			      next_state = ENABLE;
 		            else
            	              next_state = IDLE;
@@ -169,7 +169,7 @@
 		             end
 	      endcase
       end */
-     assign {PSEL1,PSEL2} = ((state == IDLE) ? (PADDR[8] ? {1'b0,1'b1} : {1'b1,1'b0}) : 2'd0); 
+     assign {PSEL1,PSEL2} = ((state != IDLE) ? (PADDR[8] ? {1'b0,1'b1} : {1'b1,1'b0}) : 2'd0); 
 
   // PSLVERR LOGIC
   
