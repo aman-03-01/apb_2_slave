@@ -1,1 +1,1 @@
-src/rundir/
+build/\n*.o\n*.log

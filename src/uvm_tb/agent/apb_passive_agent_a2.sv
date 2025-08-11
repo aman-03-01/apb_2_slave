@@ -1,7 +1,7 @@
 class apb_passive_agent_a2 extends uvm_agent;
  `uvm_component_utils(apb_passive_agent_a2)
  
- apb_a2_monitor apb_mon_h;
+ apb_a2_monitor apb_mon2_h;
 
 function new(input string name = "apb_active_agent_a2",uvm_component parent);
   super.new(name,parent);
@@ -16,7 +16,7 @@ function void build_phase(uvm_phase phase);
      apb_drv_h = apb_a1_driver::type_id::create("apb_drv_h",this);
   end
   */
-     apb_mon_h = apb_a2_monitor::type_id::create("apb_mon_h",this);
+     apb_mon2_h = apb_a2_monitor::type_id::create("apb_mon_h",this);
 endfunction
 /* No Driver
 function void connect_phase(uvm_phase phase);

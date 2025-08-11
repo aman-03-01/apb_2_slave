@@ -4,7 +4,7 @@ class apb_active_agent_a1 extends uvm_agent ;
 
  apb_a1_sequencer apb_seqr_h ;
  apb_a1_driver apb_drv_h;
- apb_a1_monitor apb_mon_h;
+ apb_a1_monitor apb_mon1_h;
 
 function new(input string name = "apb_active_agent_a1",uvm_component parent);
   super.new(name,parent);
@@ -17,7 +17,7 @@ function void build_phase(uvm_phase phase);
      apb_seqr_h = apb_a1_sequencer::type_id::create("apb_seqr_h",this);
      apb_drv_h = apb_a1_driver::type_id::create("apb_drv_h",this);
   end
-     apb_mon_h = apb_a1_monitor::type_id::create("apb_mon_h",this);
+     apb_mon1_h = apb_a1_monitor::type_id::create("apb_mon_h",this);
 endfunction
 
 function void connect_phase(uvm_phase phase);

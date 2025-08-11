@@ -23,9 +23,9 @@ initial begin
     //run_test("apb_test");
     //run_test("apb_reset_init_test");
     //run_test("apb_incr_addr_wr_test");
-    //run_test("apb_random_write_read_test");
-   run_test("apb_targeted_addr_write_read_test");
-   //run_test("apb_targeted_addr_write_read_test_slave_2");
+  // run_test("apb_random_write_read_test");
+  run_test("apb_targeted_addr_write_read_test");
+  // run_test("apb_targeted_addr_write_read_test_slave_2");
 end
 //DUT
 

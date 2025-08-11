@@ -22,6 +22,7 @@ forever begin
 end
 endtask
 
+
 virtual task drive(apb_write_seq_item apb_tx_h);
    if(apb_tx_h.READ_WRITE =='b0 )
    begin
@@ -54,5 +55,39 @@ task read_task(apb_write_seq_item apb_tx_h);
      v_apb_intf.PSLVERR  <=apb_tx_h.PSLVERR;
   end
 endtask
+/*
+ virtual task drive(apb_write_seq_item tr);
+    @(posedge v_apb_intf.PCLK);
+    if (!v_apb_intf.PRESETn) begin
+      v_apb_intf.apb_write_data  <= 0;
+      v_apb_intf.READ_WRITE      <= 0;
+      v_apb_intf.transfer        <= 0;
+    end else begin
+      v_apb_intf.READ_WRITE  <= tr.READ_WRITE;
+      v_apb_intf.transfer    <= tr.transfer;
+      
+      if (!tr.READ_WRITE)begin
+        v_apb_intf.apb_write_paddr <= tr.apb_write_paddr;
+        v_apb_intf.apb_write_data  <= tr.apb_write_data;
+         `uvm_info("APB_DRIVER", $sformatf("WRITE: ADDR=%0h DATA=%0h", tr.apb_write_paddr, tr.apb_write_data), UVM_MEDIUM)
+      end else begin
+        v_apb_intf.apb_read_paddr <= tr.apb_read_paddr;
+         `uvm_info("APB_DRIVER", $sformatf("READ: ADDR=%0h", tr.apb_read_paddr), UVM_MEDIUM)
+      end
+      
+    //  @(posedge vif.PCLK);
+    //  vif.transfer <= 0;
+
+     // wait(vif.PSLVERR == 0);  
+      if (tr.READ_WRITE) begin
+        tr.apb_read_data_out = v_apb_intf.apb_read_data_out;
+          `uvm_info("APB_DRIVER", $sformatf("READ DATA=%0h", tr.apb_read_data_out), UVM_MEDIUM)
+      end
+      
+      @(posedge v_apb_intf.PCLK);
+           v_apb_intf.READ_WRITE <= 0;
+    end
+  endtask
+*/
 
 endclass

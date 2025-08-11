@@ -23,7 +23,7 @@ class apb_targeted_addr_write_read_test extends uvm_test;
     phase.raise_objection( this, "Starting apb_targeted_addr_write_read_sequence in main phase" );
     $display("%t Starting sequence apb_a1_seq run_phase",$time);
     apb_tar_addr_wr_rd_seq.start(apb_env_h.a1.apb_seqr_h);
-    #1000ns;
+    #50ns;
     phase.drop_objection( this , "Finished apb_targeted_addr_write_read_sequence in main phase" );
   endtask
   

@@ -1,0 +1,7 @@
+# vsim -vopt work.APB_TB_TOP -voptargs="+acc=npr" -l build_APB_TB.log -coverage -assertdebug -c -do "add wave log -r /*; coverage save -onexit -directive -cvg -codeAll cov.ucdb; run -all;quit;" -wlf waveform.wlf 
+# Start time: 15:16:07 on Mar 24,2025
+# ** Error (suppressible): (vsim-19) Failed to access library 'work' at "work".
+# No such file or directory. (errno = ENOENT)
+# Error loading design
+# End time: 15:16:08 on Mar 24,2025, Elapsed time: 0:00:01
+# Errors: 1, Warnings: 0
