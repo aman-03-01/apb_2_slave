@@ -1,1 +1,19 @@
 build/\n*.o\n*.log
+# Temporary editor files
+*.swp
+*.swo
+*~
+
+# Build/simulation outputs
+*.o
+*.log
+*.jou
+*.vcd
+*.wlf
+work/
+build/
+
+# OS files
+.DS_Store
+Thumbs.db
+
