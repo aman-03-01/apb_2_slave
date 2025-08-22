@@ -1,0 +1,6 @@
+# Ignore simulation outputs
+rundir/
+*.log
+*.ucdb
+*.wlf
+
